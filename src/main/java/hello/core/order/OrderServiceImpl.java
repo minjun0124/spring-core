@@ -6,8 +6,8 @@ import hello.core.member.MemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    // DIP위반 : 인터페이스 뿐만이 아니라 구체화까지 모두 의존하는 상태
-    // OCP위반 : FixDiscount -> RateDiscount 하는 순간 OrderServiceImpl도 수정
+//    DIP위반 : 인터페이스 뿐만이 아니라 구체화까지 모두 의존하는 상태
+//    OCP위반 : FixDiscount -> RateDiscount 하는 순간 OrderServiceImpl도 수정
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
@@ -29,5 +29,10 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    // for test
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
