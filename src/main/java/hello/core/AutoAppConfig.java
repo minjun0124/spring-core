@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -26,5 +29,18 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-
+        /**
+         * for test : 수동으로 같은 이름의 빈을 등록해준다.
+         * AutoAppConfigTest를 실행시켜 로그를 보면 중복된 이름의 빈에 대해
+         * 오버라이딩 시키는 것을 볼 수 있다.
+         * 이렇게 수동이 우선인 것을 볼 수 있지만, 실무에서는 이런 식의 개발은
+         * 디버깅하기 어려운 이슈를 초래하게 되기 때문에 이런 상황은 기피하는 것이 좋다.
+         *
+         * 따라서 Boot에서는 수동으로라도 중복된 이름의 빈이 등록되면 error를 발생시키는 것이 Default이다.
+         */
+/*        @Bean(name = "memoryMemberRepository")
+        MemberRepository memberRepository() {
+                return new MemoryMemberRepository();
+        }
+*/
 }
