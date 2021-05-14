@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
   // @RequiredArgsConstructor 를 사용하면 필드값을 사용하여 생성자를 만들어 준다. : 아래를 생략할 수 있다.
     @Autowired  // 생성자가 하나인 경우 생략이 가능하다.
-    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("rateDiscountPolicy") DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
