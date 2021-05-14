@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
 //    DIP위반 : 인터페이스 뿐만이 아니라 구체화까지 모두 의존하는 상태
@@ -38,13 +38,20 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 //    private final DiscountPolicy lombok; : 이런식으로 필드를 그냥 추가해도 @RequiredArgsConstructor 가 알아서 수정.
 
-/*  // @RequiredArgsConstructor 를 사용하면 필드값을 사용하여 생성자를 만들어 준다. : 아래를 생략할 수 있다.
-    @Autowired  // 생성자가 하나인 경우 생략이 가능하다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    // DiscountPolicy의 필드 값을 rateDiscountPolicy 으로 지정 -> 타입으로 빈을 조회 -> 중복되는 타입이 있으면 필드명으로 조회
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicy = rateDiscountPolicy;
     }
 
+/*
+  // @RequiredArgsConstructor 를 사용하면 필드값을 사용하여 생성자를 만들어 준다. : 아래를 생략할 수 있다.
+    @Autowired  // 생성자가 하나인 경우 생략이 가능하다.
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = rateDiscountPolicy;
+    }
 */
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
