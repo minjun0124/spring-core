@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'javax.inject:javax.inject:1'	// for JSR-330 Provider
 
 	// add lombok lib
 	compileOnly 'org.projectlombok:lombok'
